@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Trip {
 	private String name;
 	private String description;
-	private ArrayList<Photo> photoList;
+	private ArrayList<Photo> photoList = null;
 	
 	public Trip(String name, String description) {
 		this.name = name;
@@ -31,7 +31,7 @@ public class Trip {
 	public void addPhoto(Photo photo) {
 		photoList.add(photo);
 	}
-	public ArrayList<Photo> getPhotos() {
+	public ArrayList<Photo> getPhotos() throws Exception {
 		return photoList;
 	}
 }

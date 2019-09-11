@@ -26,14 +26,31 @@ public class TripManager {
 		tripList.remove(name);
 	}
 	
-	public String findTrip(String keyword) {
-		String tripName = new String();
+	public ArrayList<String> findTrip(String keyword) throws Exception {
+		ArrayList<String> tripNames = new ArrayList<String>();
+		if(keyword == null || keyword.isEmpty()) {
+			for(Map.Entry<String, Trip> tri : tripList.entrySet()) {
+				tripNames.add(tri.getValue().getName());
+			}
+		} else {
 		for(Map.Entry<String, Trip> tri : tripList.entrySet()) {
 			if(tri.getValue().getDescription().contains(keyword)){
-				tripName = tri.getValue().getName();
+				tripNames.add(tri.getValue().getName());
+				} 
+			if(tri.getValue().getName().contains(keyword)) {
+				tripNames.add(tri.getValue().getName());
+				}
+			if(tri.getValue().getPhotos() == null) {}
+			else {
+			for(Photo photo: tri.getValue().getPhotos()) {
+				if(photo.getComment().contains(keyword)) {
+					tripNames.add(tri.getValue().getName());
+					}
 				}
 			}
-		return tripName;
+			}
+		}
+		return tripNames;
 	}
 	
 }

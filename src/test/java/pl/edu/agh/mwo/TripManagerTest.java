@@ -37,6 +37,14 @@ public class TripManagerTest {
 		assertEquals(1, tripManager.getTrips().size());
 		tripManager.remove(trip.getName());
 		assertEquals(0, tripManager.getTrips().size());
-		fail("chcemy zespuc");
+		//fail("chcemy zespuc");
 		}
+	
+	@Test
+	public void testKeyword() throws Exception {
+		tripManager.add(new Trip("banana", "gru minions"));
+		assertEquals(1, tripManager.findTrip(null).size());
+		assertEquals(1, tripManager.findTrip("banana").size());
+		assertEquals(0, tripManager.findTrip("remote").size());
+	}
 }
